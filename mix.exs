@@ -3,7 +3,9 @@ defmodule Auditor.MixProject do
 
   @name :auditor
   @version "0.1.0"
-  @deps []
+  @deps [
+    {:differ, "~> 0.1.1"}
+  ]
 
   def project do
     [
