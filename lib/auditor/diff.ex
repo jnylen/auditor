@@ -28,14 +28,18 @@ defmodule Auditor.Diff do
   defp process_value(list) when is_list(list) do
     list
     |> Enum.into(%{})
+  rescue
+    _ -> list
   end
 
-  defp process_value(value), do: value
+  defp process_value(value), do: value |> from_struct?()
 
-  defp from_struct?(map) do
+  defp from_struct?(map) when is_map(map) do
     map
     |> Map.from_struct()
   rescue
     _ -> map
   end
+
+  defp from_struct?(value), do: value
 end
